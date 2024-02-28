@@ -8,6 +8,10 @@ jobs:
       - name: Obtenint el codi del respositori
         uses: actions/checkout@v4
 
+      - name: Mostrar ubicación del archivo ESLint
+        run: |
+          echo 'La ubicación del archivo ESLint es: $(pwd)/.eslintrc.cjs'
+
       - name: ESLint
         uses: actions/setup-node@v3
         with:

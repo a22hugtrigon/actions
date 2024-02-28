@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Contador @numeroClicado="handleNumeroClicado" />
-    <p v-if="clickedNumber !== null">Número clicado: {{ clickedNumber }}</p>
+    <p v-if="clickedNumber !== null">Numero clicado: {{ clickedNumber }}</p>
   </div>
 </template>
 
