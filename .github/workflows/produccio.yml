@@ -15,7 +15,7 @@ jobs:
           cd ${{ github.workspace }}
           echo "Action desplegant a produccio" > ./web/last_deploy.txt
           date >> ./web/last_deploy.txt
-          cd ./web/actions-vue/
+          cd ./web/vue-actions/
           npm install
           npm run build
           scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./web/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22hugtrigon/web/a22hugtrigonactions.daw.inspedralbes.cat/public_html
