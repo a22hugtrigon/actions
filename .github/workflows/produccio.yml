@@ -8,7 +8,6 @@ jobs:
       - name: Obtenint el codi del respositori
         uses: actions/checkout@v4
 
-
       - name: ESLint
         uses: actions/setup-node@v3
         with:
