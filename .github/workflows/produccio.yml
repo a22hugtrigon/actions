@@ -8,14 +8,12 @@ jobs:
       - name: Obtenint el codi del respositori
         uses: actions/checkout@v4
 
+      - name: Instal·lar dependències
+        run: npm install
 
-      - name: ESLint
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install eslint
-      - run: npx eslint .
-      
+      - name: Executar ESLint
+        run: npx eslint . --ext .js,.vue
+
       - name: scp a produccio
         run: |
           echo "${{ secrets.PROD_KEY }}" > ~/prod_key.pem
@@ -24,7 +22,6 @@ jobs:
           echo "Action desplegant a produccio" > ./web/last_deploy.txt
           date >> ./web/last_deploy.txt
           cd ./web/vue-actions/
-          npm install
           npm run build
           scp -r -o stricthostkeychecking=no -o UserKnownHostsFile=/dev/null -i "~/prod_key.pem" ./dist/* ${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/home/a22hugtrigon/web/a22hugtrigonactions.daw.inspedralbes.cat/public_html
           
