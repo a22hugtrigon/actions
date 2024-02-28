@@ -1,48 +1,38 @@
 <template>
-  <div>
-    <header>
-      <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-      <div class="wrapper">
-        <HelloWorld msg="You did it!" />
-      </div>
-    </header>
-
-    <main>
-      <TheWelcome />
-    </main>
+  <div id="app">
+    <Contador @numeroClicado="handleNumeroClicado" />
+    <p v-if="clickedNumber !== null">Número clicado: {{ clickedNumber }}</p>
   </div>
 </template>
 
-<script setup>
-import TheWelcome from './components/Number.vue';
+<script>
+import Contador from './components/Contador.vue';
+
+export default {
+  components: {
+    Contador,
+  },
+  data() {
+    return {
+      clickedNumber: null,
+    };
+  },
+  methods: {
+    handleNumeroClicado(numero) {
+      this.clickedNumber = numero;
+    },
+  },
+};
 </script>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+#app {
+  text-align: center;
+  margin-top: 60px;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+p {
+  font-size: 18px;
+  margin-top: 20px;
 }
 </style>
